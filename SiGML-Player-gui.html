@@ -1,0 +1,678 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html lang="gu">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <title>સાઇનમિત્ર | Signmitra</title>
+    <!-- <link rel="stylesheet" href="/cwa/cwasa.css" /> -->
+    <!-- <link rel="stylesheet" href="/cwapp.css" /> -->
+    <script type="text/javascript" src="/cwa/allcsa.js"></script>
+    <script type="text/javascript" src="/cwa/split-grid.js"></script>
+    <!-- <script src="/cwa/allcsa.js"></script> -->
+    <!-- <script src="/cwa/split-grid.js"></script> -->
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+    
+        body {
+          font-family: 'Segoe UI', sans-serif;
+          background: #e8f0ff;
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          overflow: hidden;
+        }
+    
+        .header {
+          text-align: center;
+          padding: 10px 0;
+          background-color: #235185;
+          color: white;
+          font-size: 32px;
+          font-weight: bold;
+        }
+    
+        .container {
+          display: flex;
+          flex: 1;
+          height: 10%;
+        }
+    
+        .CWASAAvatar {
+          width: 40vw;
+          background: #e8f0ff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          /*transform: scaleX(-1);*/
+        }
+    
+        .CWASAAvatar * {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: contain !important;
+        }
+    
+        .controls-section {
+          width: 60vw;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 10px;
+        }
+    
+        .input-controls {
+          width: 100%;
+          max-width: 20cm;
+          background: white;
+          border-radius: 14px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+          padding: 16px;
+          margin-top: 100px;
+          margin-left: 18px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          position: relative;
+        }
+    
+        .top-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+    
+        #textInput {
+          flex: 1;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-size: 18px;
+          padding: 10px 14px;
+          font-family: 'Segoe UI', sans-serif;
+          background: #f9f9f9;
+          color: #1c2a39;
+          outline: none;
+          width: 100%;
+        }
+    
+        .mic-btn {
+          width: 42px;
+          height: 42px;
+          background: #ffffff;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+    
+        .mic-btn i {
+          font-size: 20px;
+          color: #004d99;
+        }
+    
+        .mic-btn:hover {
+          background-color: #cbcccdbe;
+        }
+    
+        .tooltip {
+          display: none;
+          position: absolute;
+          top: 68px;
+          right: 16px;
+          background: #235185;
+          color: white;
+          padding: 6px 10px;
+          font-size: 14px;
+          border-radius: 5px;
+          white-space: nowrap;
+          z-index: 999;
+        }
+    
+        .bottom-section {
+          display: flex;
+          flex-direction: row;
+          gap: 100px;
+        }
+    
+        .speed-controls {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 16px;
+        }
+    
+        #speedSlider {
+          width: 150px;
+          height: 6px;
+          border-radius: 3px;
+          outline: none;
+          appearance: none;
+          background: #ffffff;
+          border: #1c2a39 solid 0.5px;
+        }
+    
+        .playback-controls {
+          display: flex;
+          gap: 20px;
+          margin-left: 270px;
+        }
+    
+        .circle-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background-color: #235185;
+          color: white;
+          font-size: 18px;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+    
+        .circle-btn:hover {
+          background-color: #768ed7;
+          color: black;
+        }
+    
+        #barakhadiRow {
+          height: 38px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          margin-left: 25px;
+        }
+    
+        .barakhadi-btn {
+          width: 36px;
+          height: 36px;
+          font-size: 16px;
+          border: none;
+          border-radius: 6px;
+          background: #235185;
+          color: white;
+          cursor: pointer;
+        }
+    
+        .barakhadi-btn:hover {
+            background-color: #768ed7;
+            font-weight: bold;
+        }
+    
+        .keyboard-wrapper {
+          display: flex;
+          /*justify-content: space-between;*/
+          /*align-items: flex-start;*/
+          padding: 20px;
+          border-radius: 16px;
+          width: 92.5%;
+          gap: 15px;
+          /*flex-wrap: nowrap;*/
+          background: rgba(255, 255, 255, 0.1);
+        }
+    
+        .keyboard-main {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: end; /* ✅ This will allow rows to center correctly */
+          /*flex: 1;*/
+        }
+    
+        .keyboard-row {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        /* New overrides for bottom rows only */
+        
+        #spaceRow {
+            display: flex; /* ✅ Ensure it's flex */
+            justify-content: center; /* ✅ Center contents */
+            
+        }
+        
+        #bottomRow{
+            display: flex; /* ✅ Ensure it's flex */
+            justify-content: center; /* ✅ Center contents */
+            margin-left: 120px;
+            /*gap: 20px;*/
+        }
+        
+    
+        .keyboard-numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 40px);
+            grid-auto-rows: 38px;
+            gap: 12px;
+            flex-shrink: 0;
+            align-items: center;
+            justify-items: left;
+          }
+          
+    
+        .key-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+          background-color: #235185;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+        }
+    
+        .key-btn:hover {
+          background-color: #768ed7;
+          font-weight: bold;
+        }
+    
+        .space-btn {
+          width: 185px;
+          height: 38px;
+          font-size: 16px;
+        }
+
+        .numpad-wrapper {
+            display: flex;
+            align-items: center;
+            /*justify-content: left;*/
+            height: 65%;
+            padding-top: 22px; /* Optional, for aesthetic spacing */
+          }
+          .zero-btn {
+            width: 65%;
+            height: 38px;
+            font-size: 18px;
+          }
+
+          /* Ensuring slider thumb color change in Webkit browsers (Chrome, Edge, Safari) */
+          #speedSlider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Critical to override default browser styles */
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background-color: #235185 !important; /* Your desired thumb color */
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+          }
+
+          /* Ensuring slider thumb color change in Firefox */
+          #speedSlider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background-color: #235185 !important; /* Your desired thumb color */
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+          }
+
+          /* Optional hover state for improved UX */
+          #speedSlider::-webkit-slider-thumb:hover,
+          #speedSlider::-moz-range-thumb:hover {
+            background-color: #768ed7 !important;
+          }
+
+          
+      </style>  
+</head>
+
+<body onload="CWASA.init();">
+  
+    <div class="header">સાઇનમિત્ર (Signmitra)</div>
+    <div class="container">
+        <div class="CWASAAvatar av0"></div>
+        <div class="controls-section">
+            <div class="input-controls">
+                <div class="top-row">
+                    <input id="textInput" placeholder="ગુજરાતીમાં લખો..." />
+                    <div class="mic-btn" onclick="startSpeechRecognition()">
+                        <i class="fas fa-microphone"></i>
+                      </div>
+                </div>
+
+                <div class="tooltip" id="tooltip">Enter Gujarati by speaking</div>
+
+                <div class="bottom-section">
+                    <div class="speed-controls">
+                        <label for="speedSlider">Speed:</label>
+                        <input type="range" id="speedSlider" min="-2" max="2" step="0.1" value="0">
+                        <span id="speedValue">1.0x</span>
+                    </div>
+
+
+
+                    <div class="playback-controls">
+                      <button class="circle-btn" onclick="playTranslation()">▶</button>
+                      <button class="circle-btn" onclick="stopAvatar()">⏹</button>
+                  </div>
+                  
+                </div>
+            </div>
+
+
+
+            <div id="barakhadiRow"></div>
+            <div class="keyboard-wrapper">
+                <div class="keyboard-main">
+                  <!-- removed row0 -->
+                  <div class="keyboard-row" id="row1"></div>
+                  <div class="keyboard-row" id="row2"></div>
+                  <div class="keyboard-row" id="row3"></div>
+                  <div class="keyboard-row" id="row4"></div>
+                  <div class="keyboard-row" id="row5"></div>
+                  <div class="keyboard-row" id="bottomRow"></div>
+                  <div class="keyboard-row" id="spaceRow"></div>
+                </div>
+                <div class="numpad-wrapper">
+                  <div class="keyboard-numpad" id="numpad"></div>
+                </div>
+              </div>
+              
+        </div>
+    </div>
+    <textarea class="txtaSiGMLText av0" style="display:none;"></textarea>
+    <button class="bttnPlaySiGMLText av0" style="display:none;"></button>
+
+
+    <script>
+        let currentSpeed = 1.0;
+        let lastInsertedIndex = null;
+        const speedDisplay = document.getElementById("speedValue");
+        const input = document.getElementById("textInput");
+        const barakhadiRow = document.getElementById("barakhadiRow");
+        const slider = document.getElementById("speedSlider");
+
+        function setSliderBackground(slider) {
+          const percentage = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+          slider.style.background = `linear-gradient(to right, #004d99 ${percentage}%, #ffffff ${percentage}%)`;
+        }
+        
+        function updateSpeedFromLog(val) {
+          const logSpeed = parseFloat(val); // val is in log scale
+          const realSpeed = Math.pow(2, logSpeed); // converts to actual playback speed
+          CWASA.setLogSpeed(logSpeed); // this is how the SiGML avatar uses speed
+        
+          const display = `${realSpeed.toFixed(2)}x`;
+          document.getElementById("speedValue").textContent = display;
+        }
+        
+
+        slider.addEventListener("input", function () {
+            setSliderBackground(this);
+            updateSpeedDisplay(this.value); // Optional: your speed function
+        });
+
+        setSliderBackground(slider); // Call once on page load
+
+
+        const vowels = ['અ', 'આ', 'ઇ', 'ઈ', 'ઉ', 'ઊ', 'એ', 'ઐ', 'ઓ', 'ઔ', 'અં', 'અઃ', 'ઋ'];
+
+        const consonants = [
+            'ક', 'ખ', 'ગ', 'ઘ', 'ઙ', 'ચ', 'છ', 'જ', 'ઝ', 'ઞ',
+            'ટ', 'ઠ', 'ડ', 'ઢ', 'ણ', 'ત', 'થ', 'દ', 'ધ', 'ન',
+            'પ', 'ફ', 'બ', 'ભ', 'મ', 'ય', 'ર', 'લ', 'વ', 'શ',
+            'ષ', 'સ', 'હ', 'ળ', 'ક્ષ', 'ત્ર', 'જ્ઞ', 'ં'
+        ];
+        const suffixes = ['ા', 'િ', 'ી', 'ુ', 'ૂ','ૃ','્', 'ે', 'ૈ', 'ો', 'ૌ', 'ં', 'ઃ'];
+
+        const barakhadiMap = {};
+        consonants.forEach(c => barakhadiMap[c] = suffixes.map(s => c + s));
+
+        function changeSpeed(delta) {
+            currentSpeed += delta;
+            CWASA.setSpeed(currentSpeed);
+            speedDisplay.value = currentSpeed.toFixed(1);
+        }
+
+        function resetSpeed() {
+            currentSpeed = 1.0;
+            CWASA.setSpeed(currentSpeed);
+            speedDisplay.value = currentSpeed.toFixed(1);
+        }
+
+        function insertAtCursor(text, moveCursor = true) {
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            const before = input.value.substring(0, start);
+            const after = input.value.substring(end);
+            input.value = before + text + after;
+            const cursorPos = moveCursor ? start + text.length : start;
+            input.setSelectionRange(cursorPos, cursorPos);
+            input.focus();
+            return start;
+        }
+
+        function insertConsonantAndShowBarakhadi(letter) {
+            lastInsertedIndex = insertAtCursor(letter, true);
+            showBarakhadi(letter);
+        }
+
+        function insertBarakhadi(fullChar) {
+            if (lastInsertedIndex !== null) {
+                const before = input.value.substring(0, lastInsertedIndex);
+                const after = input.value.substring(input.selectionEnd);
+                input.value = before + fullChar + after;
+                const pos = before.length + fullChar.length;
+                input.setSelectionRange(pos, pos);
+                input.focus();
+                lastInsertedIndex = null;
+                hideBarakhadi();
+            }
+        }
+
+        function insertGujaratiDirect(char) {
+            insertAtCursor(char);
+            hideBarakhadi();
+        }
+
+        function showBarakhadi(baseChar) {
+            barakhadiRow.innerHTML = '';
+            const list = barakhadiMap[baseChar] || [];
+            list.forEach(char => {
+                const btn = document.createElement("button");
+                btn.className = 'barakhadi-btn';
+                btn.textContent = char;
+                btn.onclick = () => insertBarakhadi(char);
+                barakhadiRow.appendChild(btn);
+            });
+        }
+
+        function hideBarakhadi() {
+            barakhadiRow.innerHTML = '';
+            lastInsertedIndex = null;
+        }
+
+        function buildKeyboard() {
+            const digitRow = ['૭','૮','૯','૪','૫','૬','૧','૨','૩','૦'];
+    const rows = [
+        vowels,
+        ['ક', 'ખ', 'ગ', 'ઘ', 'ઙ', 'ચ', 'છ', 'જ', 'ઝ', 'ઞ', 'ટ', 'ઠ', 'ડ'],
+        ['ઢ', 'ણ', 'ત', 'થ', 'દ', 'ધ', 'ન', 'પ', 'ફ', 'બ', 'ભ', 'મ', 'ય'],
+        ['ર', 'લ', 'વ', 'શ', 'ષ', 'સ', 'હ', 'ળ', 'ક્ષ', 'ત્ર', 'જ્ઞ', 'ં']
+    ];
+
+    const numpad = document.getElementById("numpad");
+    digitRow.slice(0, 9).forEach(letter => {
+        const btn = document.createElement("button");
+        btn.className = 'key-btn';
+        btn.textContent = letter;
+        btn.onclick = () => insertGujaratiDirect(letter);
+        numpad.appendChild(btn);
+    });
+    
+    // Now add "0" in a full-width row
+    const zeroBtn = document.createElement("button");
+    zeroBtn.className = "key-btn zero-btn"; // apply special class
+    zeroBtn.textContent = '૦';
+    zeroBtn.onclick = () => insertGujaratiDirect('૦');
+    zeroBtn.style.gridColumn = "1 / span 3"; // ✅ spans full row in 3-column grid
+
+    numpad.appendChild(zeroBtn);
+
+    
+
+    rows.forEach((row, idx) => {
+        const rowDiv = document.getElementById(`row${idx + 1}`);
+        row.forEach(letter => {
+            const btn = document.createElement("button");
+            btn.className = 'key-btn';
+            btn.textContent = letter;
+            btn.onclick = () =>
+                consonants.includes(letter)
+                    ? insertConsonantAndShowBarakhadi(letter)
+                    : insertGujaratiDirect(letter);
+            rowDiv.appendChild(btn);
+        });
+    });
+
+            const bottom = document.getElementById("bottomRow");
+
+            const clearBtn = document.createElement("button");
+            clearBtn.className = "key-btn";
+            clearBtn.textContent = "🗑";
+            clearBtn.onclick = () => {
+                input.value = '';
+                hideBarakhadi();
+                input.focus();
+            };
+            bottom.appendChild(clearBtn);
+
+            // Slash key (/)
+            const slashBtn = document.createElement("button");
+            slashBtn.className = "key-btn";
+            slashBtn.textContent = "/";
+            slashBtn.onclick = () => insertGujaratiDirect("/");
+            bottom.appendChild(slashBtn);
+
+            // Comma (,)
+            const commaBtn = document.createElement("button");
+            commaBtn.className = "key-btn";
+            commaBtn.textContent = ",";
+            commaBtn.onclick = () => insertGujaratiDirect(",");
+            bottom.appendChild(commaBtn);
+
+            // Spacebar
+            const spaceBtn = document.createElement("button");
+            spaceBtn.className = "key-btn space-btn";
+            spaceBtn.textContent = "⎵";
+            spaceBtn.onclick = () => insertGujaratiDirect(" ");
+            bottom.appendChild(spaceBtn);
+
+            // Question mark (?)
+            const questionBtn = document.createElement("button");
+            questionBtn.className = "key-btn";
+            questionBtn.textContent = "?";
+            questionBtn.onclick = () => insertGujaratiDirect("?");
+            bottom.appendChild(questionBtn);
+
+            // Full Stop (.)
+            const dotBtn = document.createElement("button");
+            dotBtn.className = "key-btn";
+            dotBtn.textContent = ".";
+            dotBtn.onclick = () => insertGujaratiDirect(".");
+            bottom.appendChild(dotBtn);
+
+            // Delete key (⌫)
+            const delBtn = document.createElement("button");
+            delBtn.className = "key-btn";
+            delBtn.textContent = "⌫";
+            delBtn.onclick = () => {
+                const start = input.selectionStart;
+                if (start > 0) {
+                    input.value = input.value.slice(0, start - 1) + input.value.slice(input.selectionEnd);
+                    input.setSelectionRange(start - 1, start - 1);
+                    input.focus();
+                }
+                hideBarakhadi();
+            };
+            bottom.appendChild(delBtn);
+
+        }
+        function pauseAvatar() {
+            console.log("Pause avatar triggered"); // Replace with your pause logic
+        }
+
+        function stopAvatar() {
+            console.log("Stop avatar triggered"); // Replace with your stop logic
+        }
+        function updateSpeedDisplay(value) {
+            console.log("Speed:", value); // or CWASA.setSpeed(parseFloat(value));
+        }
+        async function playTranslation() {
+          const inputText = document.getElementById("textInput").value.trim();
+          const tokens = inputText.split(/\s+/);
+        
+          for (const token of tokens) {
+            try {
+              const response = await fetch(
+                `http://localhost:3000/api/fallback-sigml/${encodeURIComponent(token)}`
+              );
+              if (!response.ok) {
+                console.warn(`❌ No SiGML for: ${token}`);
+                continue;
+              }
+              const { sigmls } = await response.json();
+              for (const sigml of sigmls) {
+                document.querySelector(".txtaSiGMLText.av0").value = sigml;
+                document.querySelector(".bttnPlaySiGMLText.av0").click();
+                await waitUntilDonePlaying();
+              }
+            } catch (err) {
+              console.error(`Error fetching SiGML for "${token}":`, err);
+            }
+          }
+        
+          // optional: clear input
+          document.getElementById("textInput").value = "";
+        }
+        
+        
+        
+        function waitUntilDonePlaying() {
+          const POLL_INTERVAL = 50;           // ms
+          const FALLBACK_DELAY = 800;         // ms – tweak this to roughly your average sign duration
+        
+          if (typeof CWASA?.isPlaying === "function") {
+            // real polling if supported
+            return new Promise((resolve) => {
+              const poll = () => {
+                if (!CWASA.isPlaying()) return resolve();
+                setTimeout(poll, POLL_INTERVAL);
+              };
+              poll();
+            });
+          } else {
+            // fallback: just wait a bit before moving to the next letter
+            return new Promise((resolve) => setTimeout(resolve, FALLBACK_DELAY));
+          }
+        }
+        
+        
+        function startSpeechRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "gu-IN";
+            recognition.onstart = () => console.log("Listening...");
+            recognition.onresult = (event) => {
+                input.value = event.results[0][0].transcript;
+            };
+            recognition.onerror = (event) => alert("Error: " + event.error);
+            recognition.start();
+        }
+
+        buildKeyboard();
+    </script>
+</body>
+
+</html>

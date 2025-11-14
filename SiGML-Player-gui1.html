@@ -1,0 +1,466 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>SiGML Signing App New Gui: vhg.2021</title>
+
+	<meta http-equiv="Access-Control-Allow-Methods" content="GET">
+
+	<!-- CWA @ vhg.cmp.uea.ac.uk/tech/jas/vhg2021 -->
+
+	<link rel="stylesheet" href="cwasa.css" />
+	<link rel="stylesheet" href="cwapp.css" />
+	<script type="text/javascript" src="allcsa.js"></script>
+	<script type="text/javascript" src="split-grid.js"></script>
+	
+	<style>
+		button {
+			padding: 10px;
+			background-color: #b8bfd1;
+			color: #000000;
+			border: none;
+			border-radius: 45px;
+			cursor: pointer;
+			font-weight: 550;
+		}
+
+		button:hover {
+			background-color: #768ed7;
+		}
+
+		#micBtn {
+			font-size: 20px;
+		}
+
+		#input-section {
+			display: flex;
+			align-items: center;
+			width: 98%;
+			background: white;
+			padding: 10px;
+			border-radius: 10px;
+			box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+			position: fixed;
+			bottom: 120px;
+			transform: translateY(-150%);
+			/* Adjust based on keyboard height */
+		}
+
+		#glossInput {
+			flex: 1;
+			padding: 12px;
+			font-size: 16px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+		}
+
+
+		#gujaratiKeyboard {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 2px;
+			background: white;
+			padding: 5px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			position: fixed;
+			bottom: 10px;
+			/* Keyboard stays below the text input */
+			width: 90%;
+			max-width: 600px;
+			margin-top: 50%;
+			transform: translateX(66%);
+		}
+
+
+		#gujaratiKeyboard button {
+			padding: 10px;
+			font-size: 18px;
+			font-weight: 550;
+			background-color: #b8bfd1;
+			color: black;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 40px;
+			height: 40px;
+		}
+
+
+		#gujaratiKeyboard button:hover {
+			background-color: #768ed7;
+		}
+
+		#suggestionsBox {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: start;
+			gap: 2px;
+			position: absolute;
+			left: 105%;
+			/* Places it to the right of the keyboard */
+			top: 0;
+			background: white;
+			padding: 5px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			width: auto;
+			max-width: 300px;
+		}
+
+		#suggestionsBox button {
+			padding: 10px;
+			/* display: grid;
+			grid-auto-flow: column; */
+			font-size: 16px;
+			font-weight: 550;
+			background-color: #b8bfd1;
+			color: black;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		#suggestionsBox button:hover {
+			background-color: #768ed7;
+		}
+
+		#playBtn {
+			padding: 12px;
+			background: #2c3557;
+			border: none;
+			border-radius: 50%;
+			color: #fff;
+			font-size: 18px;
+			margin-left: 0.5%;
+		}
+
+		#playBtn:hover {
+			background-color: #768ed7;
+			color: rgb(23, 23, 58);
+		}
+
+		#glossInput {
+			flex: 1;
+			padding: 12px;
+			font-size: 16px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			margin-right: 10px;
+		}
+	</style>
+
+</head>
+
+<body onload="CWASA.init();" style="margin:0; font-family:sans-serif; background:#f8f8f8;">
+	<h1 style="color: #235185;font-weight: bolder; text-align: center;">SignMitra</h1>
+
+	<!-- Avatar View -->
+	<div id="avatar-container"
+		style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:70vh;">
+		<div class="CWASAAvatar av0" style="width:100%; height:100%; background:#fff;"></div>
+	</div>
+
+	<!-- Input Section -->
+	<div id="input-section"
+		style="padding:10px; display:flex; justify-content:space-between; align-items:center; background:#fff; box-shadow:0 -1px 5px rgba(0,0,0,0.1);">
+		<input type="text" id="glossInput" placeholder="Type to translate" tabindex="0">
+		<div class="input-controls">
+			<button id="micBtn" onclick="startSpeechRecognition()">🎤</button>
+		</div>
+		<button id="playBtn" class="bttnPlaySiGMLText av0">▶</button>
+	</div>
+	<div id="gujaratiKeyboard">
+		<!-- Vowels (સ્વર) -->
+		<button onclick="insertGujarati('અ')">અ</button>
+		<button onclick="insertGujarati('આ')">આ</button>
+		<button onclick="insertGujarati('ઇ')">ઇ</button>
+		<button onclick="insertGujarati('ઈ')">ઈ</button>
+		<button onclick="insertGujarati('ઉ')">ઉ</button>
+		<button onclick="insertGujarati('ઊ')">ઊ</button>
+		<button onclick="insertGujarati('એ')">એ</button>
+		<button onclick="insertGujarati('ઐ')">ઐ</button>
+		<button onclick="insertGujarati('ઓ')">ઓ</button>
+		<button onclick="insertGujarati('ઔ')">ઔ</button>
+		<button onclick="insertGujarati('ઋ')">ઋ</button>
+
+		<!-- Consonants (વ્યંજન) -->
+		<button onclick="insertGujarati('ક')">ક</button>
+		<button onclick="insertGujarati('ખ')">ખ</button>
+		<button onclick="insertGujarati('ગ')">ગ</button>
+		<button onclick="insertGujarati('ઘ')">ઘ</button>
+		<button onclick="insertGujarati('ઙ')">ઙ</button>
+
+		<button onclick="insertGujarati('ચ')">ચ</button>
+		<button onclick="insertGujarati('છ')">છ</button>
+		<button onclick="insertGujarati('જ')">જ</button>
+		<button onclick="insertGujarati('ઝ')">ઝ</button>
+		<button onclick="insertGujarati('ઞ')">ઞ</button>
+
+		<button onclick="insertGujarati('ટ')">ટ</button>
+		<button onclick="insertGujarati('ઠ')">ઠ</button>
+		<button onclick="insertGujarati('ડ')">ડ</button>
+		<button onclick="insertGujarati('ઢ')">ઢ</button>
+		<button onclick="insertGujarati('ણ')">ણ</button>
+
+		<button onclick="insertGujarati('ત')">ત</button>
+		<button onclick="insertGujarati('થ')">થ</button>
+		<button onclick="insertGujarati('દ')">દ</button>
+		<button onclick="insertGujarati('ધ')">ધ</button>
+		<button onclick="insertGujarati('ન')">ન</button>
+
+		<button onclick="insertGujarati('પ')">પ</button>
+		<button onclick="insertGujarati('ફ')">ફ</button>
+		<button onclick="insertGujarati('બ')">બ</button>
+		<button onclick="insertGujarati('ભ')">ભ</button>
+		<button onclick="insertGujarati('મ')">મ</button>
+
+		<button onclick="insertGujarati('ય')">ય</button>
+		<button onclick="insertGujarati('ર')">ર</button>
+		<button onclick="insertGujarati('લ')">લ</button>
+		<button onclick="insertGujarati('વ')">વ</button>
+
+		<button onclick="insertGujarati('શ')">શ</button>
+		<button onclick="insertGujarati('ષ')">ષ</button>
+		<button onclick="insertGujarati('સ')">સ</button>
+		<button onclick="insertGujarati('હ')">હ</button>
+
+		<button onclick="insertGujarati('ળ')">ળ</button>
+		<button onclick="insertGujarati('ક્ષ')">ક્ષ</button>
+		<button onclick="insertGujarati('જ્ઞ')">જ્ઞ</button>
+		<button onclick="insertGujarati('ત્ર')">ત્ર</button>
+
+		<!-- Special Characters -->
+		<button onclick="insertGujarati('ં')">ં</button>
+		<button onclick="insertGujarati('ઃ')">ઃ</button>
+		<button onclick="insertGujarati('્')">્</button>
+		<button onclick="insertGujarati('ૐ')">ૐ</button>
+		<button onclick="insertGujarati('૦')">૦</button>
+		<button onclick="insertGujarati('૧')">૧</button>
+		<button onclick="insertGujarati('૨')">૨</button>
+		<button onclick="insertGujarati('૩')">૩</button>
+		<button onclick="insertGujarati('૪')">૪</button>
+		<button onclick="insertGujarati('૫')">૫</button>
+		<button onclick="insertGujarati('૬')">૬</button>
+		<button onclick="insertGujarati('૭')">૭</button>
+		<button onclick="insertGujarati('૮')">૮</button>
+		<button onclick="insertGujarati('૯')">૯</button>
+		<button onclick="deleteLastCharacter()">⌫</button>
+		<button onclick="insertGujarati(' ')">⎵</button>
+		<div id="suggestionsBox"></div>
+	</div>
+
+	</div>
+
+
+	<!-- Bottom Navbar -->
+	<!--<div id="bottom-nav"
+		style="display:flex; justify-content:space-around; align-items:center; padding:10px 0; background:#fff; border-top:1px solid #ddd; position:fixed; bottom:0; width:100%;">
+		<div style="color:#f77b00; font-size:14px; text-align:center;">
+			<div>🔤</div>
+			<div>Translator</div>
+		</div>
+		<div style="color:#999; font-size:14px; text-align:center;">
+			<div>🛒</div>
+			<div>Store</div>
+		</div>
+		<div style="color:#999; font-size:14px; text-align:center;">
+			<div>👤</div>
+			<div>Account</div>
+		</div>
+	</div>-->
+
+	<!-- Hidden SiGML Textarea -->
+	<textarea class="txtaSiGMLText av0" style="display:none;"></textarea>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const playButton = document.getElementById("playBtn");
+			const glossInput = document.getElementById("glossInput");
+			const micBtn = document.getElementById("micBtn");
+			const sigmlTextArea = document.querySelector(".txtaSiGMLText");
+
+
+
+			// Function to handle speech recognition input
+			function startSpeechRecognition() {
+				if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+					alert("Speech recognition is not supported in this browser. Use Google Chrome.");
+					return;
+				}
+
+				const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+				recognition.lang = "gu-IN"; // Gujarati language
+
+				recognition.onstart = () => {
+					console.log("Listening...");
+					micBtn.innerText = "🎙️"; // Change icon to indicate listening
+				};
+
+				recognition.onresult = (event) => {
+					const speechText = event.results[0][0].transcript;
+					console.log("Recognized:", speechText);
+
+					if (glossInput) {
+						glossInput.value = speechText;
+					} else {
+						console.error("glossInput not found!");
+					}
+
+					generateSuggestions(speechText); // Ensure this function exists
+				};
+
+				recognition.onerror = (event) => {
+					console.error("Error:", event.error);
+					alert("Speech Recognition Error: " + event.error);
+				};
+
+				recognition.onend = () => {
+					console.log("Speech recognition ended.");
+					micBtn.innerText = "🎤"; // Reset icon
+				};
+
+				recognition.start();
+			}
+
+			// Attach function to the button
+			micBtn.addEventListener("click", startSpeechRecognition);
+
+			// Function to insert Gujarati characters into the text input
+			// Ensure focus when clicked
+			glossInput.addEventListener("focus", function () {
+				glossInput.setAttribute("autofocus", true);
+			});
+
+			// Function to insert Gujarati characters
+			window.insertGujarati = function (character) {
+				const textInput = document.getElementById("glossInput");
+				textInput.value += character;
+				generateSuggestions(textInput.value);
+			};
+
+			// Detect manual typing
+			glossInput.addEventListener("input", function () {
+				generateSuggestions(glossInput.value);
+			});
+
+			// Function to generate Barakhadi suggestions
+			window.generateSuggestions = function (inputText) {
+				const suggestionsBox = document.getElementById("suggestionsBox");
+				suggestionsBox.innerHTML = "";
+
+				const barakhadiMap = {
+					"ક": ["ક", "કા", "કિ", "કી", "કુ", "કૂ", "કૃ", "કે", "કૈ", "કો", "કૌ"],
+					"ખ": ["ખ", "ખા", "ખિ", "ખી", "ખુ", "ખૂ", "ખૃ", "ખે", "ખૈ", "ખો", "ખૌ"],
+					"ગ": ["ગ", "ગા", "ગિ", "ગી", "ગુ", "ગૂ", "ગૃ", "ગે", "ગૈ", "ગો", "ગૌ"],
+					"ઘ": ["ઘ", "ઘા", "ઘિ", "ઘી", "ઘુ", "ઘૂ", "ઘૃ", "ઘે", "ઘૈ", "ઘો", "ઘૌ"],
+					"ઙ": ["ઙ", "ઙા", " ઙિ", "ઙી", "ઙુ", "ઙૂ", "ઙૃ", "ઙે", "ઙૈ", "ઙો", "ઙૌ"],
+					"ચ": ["ચ", "ચા", "ચિ", "ચી", "ચુ", "ચૂ", "ચૃ", "ચે", "ચૈ", "ચો", " ચૌ"],
+					"છ": ["છ", "છા", "છિ", "છી", "છુ", "છૂ", "છૃ", "છે", "છૈ", "છો", "છૌ"],
+					"જ": ["જ", "જા", "જિ", "જી", "જુ", "જૂ", "જૃ", "જે", "જૈ", "જો", "જૌ"],
+					"ઝ": ["ઝ", "ઝા", "ઝિ", "ઝી", "ઝુ", "ઝૂ", "ઝૃ", "ઝે", "ઝૈ", "ઝો", "ઝૌ"],
+					"ઞ": ["ઞ", "ઞા", "ઞિ", "ઞી", "ઞુ", "ઞૂ", "ઞૃ", "ઞે", "ઞૈ", "ઞો", "ઞૌ"],
+					"ટ": ["ટ", "ટા", "ટિ", "ટી", "ટુ", "ટૂ", "ટૃ", "ટે", "ટૈ", "ટો", "ટૌ"],
+					"ઠ": ["ઠ", "ઠા", "ઠિ", "ઠી", "ઠુ", "ઠૂ", "ઠૃ", "ઠે", "ઠૈ", "ઠો", "ઠૌ"],
+					"ડ": ["ડ", "ડા", "ડિ", "ડી", "ડુ", "ડૂ", "ડૃ", "ડે", "ડૈ", "ડો", "ડૌ"],
+					"ઢ": ["ઢ", "ઢા", "ઢિ", "ઢી", "ઢુ", "ઢૂ", "ઢૃ", "ઢે", "ઢૈ", "ઢો", "ઢૌ"],
+					"ણ": ["ણ", "ણા", "ણિ", "ણી", "ણુ", "ણૂ", "ણૃ", "ણે", "ણૈ", "ણો", "ણૌ"],
+					"ત": ["ત", "તા", "તિ", "તી", "તુ", "તૂ", "તૃ", "તે", "તૈ", "તો", "તૌ"],
+					"થ": ["થ", "થા", "થિ", "થી", "થુ", "થૂ", "થૃ", "થે", "થૈ", "થો", "થૌ"],
+					"દ": ["દ", "દા", "દિ", "દી", "દુ", "દૂ", "દૃ", "દે", "દૈ", "દો", "દૌ"],
+					"ધ": ["ધ", "ધા", "ધિ", "ધી", "ધુ", "ધૂ", "ધૃ", "ધે", "ધૈ", "ધો", "ધૌ"],
+					"ન": ["ન", "ના", "નિ", "ની", "નુ", "નૂ", "નૃ", "ને", "નૈ", "નો", "નૌ"],
+					"પ": ["પ", "पा", "પિ", "પી", "પુ", "પૂ", "પૃ", "પે", "પૈ", "પો", "પૌ"],
+					"ફ": ["ફ", "ફા", "ફિ", "ફી", "ફુ", "ફૂ", "ફૃ", "ફે", "ફૈ", "ફો", "ફૌ"],
+					"બ": ["બ", "બા", "બિ", "બી", "બુ", "બૂ", "બૃ", "બે", "બૈ", "બો", "બૌ"],
+					"ભ": ["ભ", "ભા", "ભિ", "ભી", "ભુ", "ભૂ", "ભૃ", "ભે", "ભૈ", "ભો", "ભૌ"],
+					"મ": ["મ", "મા", "મિ", "મી", "મુ", "મૂ", "મૃ", "મે", "મૈ", "મો", "મૌ"],
+					"ય": ["ય", "યા", "યિ", "યી", "યુ", "યૂ", "યૃ", "યે", "યૈ", "યો", "યૌ"],
+					"ર": ["ર", "રા", "રિ", "રી", "રુ", "રૂ", "રૃ", "રે", "રૈ", "રો", "રૌ"],
+					"લ": ["લ", "લા", "લિ", "લી", "લુ", "લૂ", "લૃ", "લે", "લૈ", "લો", "લૌ"],
+					"વ": ["વ", "વા", "વિ", "વી", "વુ", "વૂ", "વૃ", "વે", "વૈ", "વો", "વૌ"],
+					"શ": ["શ", "શા", "શિ", "શી", "શુ", "શૂ", "શૃ", "શે", "શૈ", "શો", "શૌ"],
+					"ષ": ["ષ", "ષા", "ષિ", "ષી", "ષુ", "ષૂ", "ષૃ", "ષે", "ષૈ", "ષો", "ષૌ"],
+					"સ": ["સ", "સા", "સિ", "સી", "સુ", "સૂ", "સૃ", "સે", "સૈ", "સો", "સૌ"],
+					"હ": ["હ", "હા", "હિ", "હી", "હુ", "હૂ", "હૃ", "હે", "હૈ", "હો", "હૌ"],
+					"ળ": ["ળ", "ળા", "ળિ", "ળી", "ળુ", "ળૂ", "ળૃ", "ળે", "ળૈ", "ળો", "ળૌ"],
+					"ક્ષ": ["ક્ષ", "ક્ષા", "ક્ષિ", "ક્ષી", "ક્ષુ", "ક્ષૂ", "ક્ષૃ", "ક્ષે", "ક્ષૈ", "ક્ષો", "ક્ષૌ"],
+					"જ્ઞ": ["જ્ઞ", "જ્ઞા", "જ્ઞિ", "જ્ઞી", "જ્ઞુ", "જ્ઞૂ", "જ્ઞૃ", "જ્ઞે", "જ્ઞૈ", "જ્ઞો", "જ્ઞૌ"],
+					"ત્ર": ["ત્ર", "ત્રા", "ત્રિ", "ત્રી", "ત્રુ", "ત્રૂ", "ત્રૃ", "ત્રે", "ત્રૈ", "ત્રો", "ત્રૌ"]
+				};
+
+				const lastChar = inputText.slice(-1);
+				if (barakhadiMap[lastChar]) {
+					barakhadiMap[lastChar].forEach(suggestion => {
+						const suggestionBtn = document.createElement("button");
+						suggestionBtn.textContent = suggestion;
+						suggestionBtn.onclick = () => {
+							document.getElementById("glossInput").value += suggestion.slice(1);
+							generateSuggestions(document.getElementById("glossInput").value);
+						};
+						suggestionsBox.appendChild(suggestionBtn);
+					});
+				}
+			}
+			// Function to delete the last character from the input field
+			window.deleteLastCharacter = function () {
+				const textInput = document.getElementById("glossInput");
+				textInput.value = textInput.value.slice(0, -1); // Remove the last character
+				generateSuggestions(textInput.value); // Update suggestions after deleting a character
+			};
+			// Function to play a single SiGML string
+			const playSiGML = (sigml) => {
+				return new Promise((resolve) => {
+					sigmlTextArea.value = sigml;
+					const playEvent = new Event('click', { bubbles: true });
+					document.querySelector(".bttnPlaySiGMLText.av0").dispatchEvent(playEvent);
+
+					// Assume average sign length ~2 seconds (you can fine-tune this)
+					setTimeout(resolve, 2000);
+				});
+			};
+
+			playButton.addEventListener("click", async () => {
+				const words = glossInput.value.trim().split(/\s+/);
+				if (!words.length) return;
+
+				const allSigmls = [];
+
+				for (const word of words) {
+					try {
+						const response = await fetch(`http://localhost:3000/api/fallback-sigml/${encodeURIComponent(word)}`);
+						if (response.ok) {
+							const data = await response.json();
+							allSigmls.push(...data.sigmls);
+						} else {
+							console.warn(`❌ Word not found: ${word}`);
+						}
+					} catch (err) {
+						console.error(`❌ Error fetching: ${word}`, err);
+					}
+				}
+
+				glossInput.value = "";
+
+				for (const sigml of allSigmls) {
+					await playSiGML(sigml);
+				}
+
+				sigmlTextArea.value = "";
+			});
+
+
+		});
+	</script>
+
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,93 @@
+/* © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi */
+body {
+    background: #6dd5ed;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.controls-section {
+    width: 55vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+textarea#textInput {
+    width: 60ch;
+    height: 40px;
+    font-size: 18px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+button {
+    border: none;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#playBtn {
+    font-size: 16px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+#gujaratiKeyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);
+    max-width: 720px;
+}
+
+#gujaratiKeyboard button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: white;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#gujaratiKeyboard button:hover {
+    background-color: #6dd5ed;
+    color: white;
+}

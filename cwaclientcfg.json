@@ -1,0 +1,7 @@
+{
+  "logLevel": "INFO",
+  "defaultAvatar": "luna",
+  "avatarList": [
+    {"name": "luna", "path": "luna.zip"}
+  ]
+}

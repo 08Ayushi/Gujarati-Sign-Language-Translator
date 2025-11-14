@@ -1,0 +1,136 @@
+/* © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #a1c8fc;
+    overflow: hidden;
+}
+    .container {
+        width: 40%;
+        background-color: rgba(232, 232, 232, 0.834);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        color: black /* Ensures text is visible on dark background */
+    }
+    
+
+h2 {
+    color: black;
+    margin-bottom: 15px;
+}
+
+
+input {
+    width: 95%;
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+
+.login-text a {
+    color: #3d63e1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    padding: 8px;
+    background: #3d63e1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+
+
+/* LOGIN css */
+.forgot-password {
+    text-align: center;
+    margin: 5px 0;
+
+}
+
+.forgot-password a {
+    color: #3d63e1;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+/* Responsive Styles */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 80%; /* Increase width for better fit */
+        padding: 15px;
+    }
+
+    .profile-section img {
+        width: 100px;
+        height: 100px;
+    }
+
+    input {
+        width: 100%; /* Full width inputs for smaller screens */
+    }
+
+    .gender-group {
+        gap: 20px; /* Reduce spacing between gender options */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    .container {
+        width: 90%; /* Maximize use of small screens */
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 18px; /* Slightly reduce heading size */
+    }
+
+    .profile-section img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .gender-group {
+        flex-direction: column; /* Stack gender options vertically */
+        align-items: center;
+    }
+
+    button {
+        font-size: 12px; /* Reduce button font size for better fit */
+    }
+}

@@ -1,0 +1,220 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignMitra - Gujarati Sign Language Translation</title>
+    <link rel="stylesheet" href="home.css">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="home.html" class="logo">
+                    <img src="images/logo.png" alt="SignMitra Logo" class="logo-img" />
+                </a>                                    
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#teams">teams</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="profile-wrapper">
+                      <div id="profileContainer">
+                      </div>
+                        <!-- <div class="profile-circle" id="profileCircle"></div> -->
+                        <div class="dropdown-menu" id="profileDropdown" style="display: none;">
+                            <ul>
+                              <li id="userData">👤 My Profile</li>
+                              <li id="userSettings">⚙️ Settings</li>
+                              <li id="logoutBtn">🚪 Logout</li>
+                            </ul>
+                        </div>
+                    </li>                      
+                </ul>
+                <button class="mobile-menu-btn" style="display: none;">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container1">
+            <div class="hero-text">
+                <h1>Breaking Language Barriers for the Deaf Community</h1>
+                <p>SignMitra translates Gujarati text and speech into sign language, making communication accessible for
+                    everyone. Our avatar provides real-time translation with natural, fluid signing
+                    movements.</p>
+                <a href="SiGML-Player-gui.html" class="btn">Start Translating Now</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/img.png" alt="SignMitra avatar demonstration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Features</h2>
+                <p>SignMitra makes Gujarati sign language translation simple, accurate, and accessible</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Speech to Sign</h3>
+                    <p>Convert spoken Gujarati words into sign language with our voice recognition technology</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⌨️</div>
+                    <h3>Text to Sign</h3>
+                    <p>Type Gujarati text and watch our avatar translate it into accurate sign language gestures</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access SignMitra anywhere on any device with our responsive web application</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>SignMitra translates Gujarati into sign language in three simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Input Text or Speech</h3>
+                    <p>Type Gujarati text using our keyboard or use the microphone for voice input</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Word to SiGML Notation</h3>
+                    <p>Different words are converted to Hamnosys notation and then to SiGML code which is stored in
+                        Database.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Avatar animation using SiGML</h3>
+                    <p>Watch our 3D avatar perform the signs with natural, fluid movements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="teams" id="teams">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team">
+                    <div class="team-author">
+                        <img src="images/Dev.png" alt="Teacher">
+                        <div class="author-info">
+                            <h4>Dev Shah</h4>
+                            <p>Third year Btech CS&E Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="team-author">
+                        <img src="images/Ayu.jpg" alt="Teacher">
+                        <div class="author-info">
+                            <h4>Ayushi Soni</h4>
+                            <p>Third year Btech CS&E Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="team-author">
+                        <img src="images/maitri.jpg" alt="Teacher">
+                        <div class="author-info">
+                            <h4>Maitriba Jadeja</h4>
+                            <p>Third year Btech CS&E Student</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="team-author">
+                        <img src="images/Vishwa.jpg" alt="Teacher">
+                        <div class="author-info">
+                            <h4>Vishwa Joshi</h4>
+                            <p>Third year Btech CS&E Student</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Break Communication Barriers?</h2>
+            <p>Start using SignMitra today and experience the power of Gujarati sign language translation</p>
+            <a href="SiGML-Player-gui.html" class="btn btn-light">Try SignMitra Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                  <h3>Quick Links</h3>
+                  <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#teams">Teams</a></li>
+                    <li><a href="SiGML-Player-gui.html">Translator</a></li>
+                  </ul>
+                </div>
+                <div class="footer-section">
+                  <h3>Contact</h3>
+                  <ul>
+                    <li>Email: support@signmitra.com</li>
+                    <li>Phone: +91 9876543210</li>
+                    <li>Address: GLS University, Ahmedabad, Gujarat</li>
+                  </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                      <li><a href="#"><i class="fab fa-github"></i> Github</a></li>
+                      <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                      <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                      <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>                                    
+                <div class="footer-section">
+                  <h3>Support</h3>
+                  <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Report an Issue</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                  </ul>
+                </div>
+              </div>                    
+          <div class="copyright">
+            <p>&copy; 2025 SignMitra. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>          
+    <script src="home.js" defer></script>
+</body>
+
+</html>

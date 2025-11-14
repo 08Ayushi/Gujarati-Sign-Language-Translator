@@ -1,0 +1,158 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>સાઇનમિત્ર | SignMitra</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- VHG SiGML Player CSS -->
+  <link rel="stylesheet" href="/cwa/cwasa.css" />
+  <!-- <link rel="stylesheet" href="/cwa/cwasa.css" /> -->
+  <link rel="stylesheet" href="/cwapp.css" />
+  <script type="text/javascript" src="/cwa/allcsa.js"></script>
+  <script type="text/javascript" src="/cwa/split-grid.js"></script>
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box }
+    html, body {
+      width:100%; height:100%;
+      font-family:'Segoe UI',sans-serif;
+      background:#e8f0ff;
+      overflow:hidden;
+    }
+
+    /* avatar full‑bleed top 60% */
+    .avatar-wrapper {
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      background:#e8f0ff;
+    }
+    .avatar-wrapper .CWASAAvatar.av0 {
+      width:100% !important;
+      height:100% !important;
+      object-fit:contain !important;
+    }
+
+    /* bottom input + buttons */
+    .input-bar {
+      position:fixed;
+      bottom:0; left:0; right:0;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      padding:8px 12px;
+      box-shadow:0 -1px 4px rgba(0,0,0,0.1);
+      gap:8px;
+    }
+    .input-bar input {
+      flex:1;
+      padding:20px 24px;
+      font-size:16px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      outline:none;
+      color:#1c2a39;
+      background:#f9f9f9;
+    }
+    .input-bar button {
+      flex:0 0 44px;
+      height:44px;
+      border:none;
+      border-radius:50%;
+      background:#235185;
+      color:#fff;
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 1px 4px rgba(0,0,0,0.2);
+    }
+    .input-bar button:hover {
+      background:#768ed7;
+    }
+  </style>
+</head>
+
+<body onload="CWASA.init();">
+  <!-- Avatar -->
+  <div class="avatar-wrapper">
+    <div class="CWASAAvatar av0"></div>
+  </div>
+
+  <!-- Text + Play + Mic -->
+  <div class="input-bar">
+    <input id="textInput"
+           type="text"
+           placeholder="ગુજરાતીમાં લખો..."
+           lang="gu"
+           autocomplete="on"/>
+    <button onclick="playTranslation()">
+      <i class="fas fa-play"></i>
+    </button>
+    <button onclick="startSpeechRecognition()">
+      <i class="fas fa-microphone"></i>
+    </button>
+  </div>
+
+  <!-- hidden SiGML playback hooks -->
+  <textarea class="txtaSiGMLText av0" style="display:none"></textarea>
+  <button class="bttnPlaySiGMLText av0" style="display:none"></button>
+
+  <script src="/cwa/allcsa.js"></script>
+  <script>
+    const input = document.getElementById("textInput");
+
+    async function playTranslation() {
+      const text = input.value.trim();
+      if (!text) return;
+      const tokens = text.split(/\s+/);
+      for (const t of tokens) {
+        try {
+          const res = await fetch(`/api/fallback-sigml/${encodeURIComponent(t)}`);
+          if (!res.ok) continue;
+          const { sigmls } = await res.json();
+          for (const s of sigmls) {
+            document.querySelector(".txtaSiGMLText.av0").value = s;
+            document.querySelector(".bttnPlaySiGMLText.av0").click();
+            await waitUntilDonePlaying();
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      // clear or keep text as you like:
+      // input.value = "";
+    }
+
+    function waitUntilDonePlaying() {
+      const POLL = 50, DELAY = 800;
+      if (typeof CWASA?.isPlaying === "function") {
+        return new Promise(r => {
+          (function poll() {
+            if (!CWASA.isPlaying()) return r();
+            setTimeout(poll, POLL);
+          })();
+        });
+      }
+      return new Promise(r => setTimeout(r, DELAY));
+    }
+
+    function startSpeechRecognition() {
+      const rec = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      rec.lang = "gu-IN";
+      rec.onresult = e => {
+        input.value = e.results[0][0].transcript;
+      };
+      rec.onerror = ev => alert("Speech error: "+ev.error);
+      rec.start();
+    }
+  </script>
+</body>
+</html>

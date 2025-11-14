@@ -1,0 +1,27 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="forget.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Reset Your Password</h2>
+        <p>Enter your email address to receive a password reset link.</p>
+
+        <form onsubmit="return sendResetLink(event)">
+           
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <button type="submit">Send Reset Link</button>
+
+            <p class="login-text"><a href="login.html">Back to Login</a></p>
+        </form>
+    </div>
+
+    <script src="fscript.js"></script>
+</body>
+</html>

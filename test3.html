@@ -1,0 +1,308 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SignMitra - Gujarati Keyboard</title>
+
+  <script src="https://www.gstatic.com/inputtools/js/ita/inputtools.js"></script>
+  <link rel="stylesheet" href="cwa/cwasa.css" />
+  <link rel="stylesheet" href="cwa/cwapp.css" />
+  <script src="cwa/allcsa.js"></script>
+
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f8f8f8;
+    }
+
+    h1 {
+      color: #235185;
+      text-align: center;
+      font-weight: bolder;
+    }
+
+    #avatar-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+      background: white;
+    }
+
+    #input-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #glossInput {
+      flex: 1 1 200px;
+      min-width: 60%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: #2c3557;
+      color: white;
+      width: 45px;
+      height: 45px;
+    }
+
+    button:hover {
+      background-color: #768ed7;
+      color: black;
+    }
+
+    #gujaratiKeyboard {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      margin: 10px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #gujaratiKeyboard button {
+      background-color: #b8bfd1;
+      color: black;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 10vw;
+      height: 10vw;
+      max-width: 50px;
+      max-height: 50px;
+      font-size: 16px;
+    }
+
+    #gujaratiKeyboard button:hover {
+      background-color: #768ed7;
+    }
+
+    @media (max-width: 600px) {
+      #avatar-container {
+        height: 35vh;
+      }
+
+      #glossInput {
+        min-width: 100%;
+      }
+
+      #gujaratiKeyboard button {
+        font-size: 14px;
+        width: 12vw;
+        height: 12vw;
+      }
+    }
+  </style>
+</head>
+
+<body onload="CWASA.init();">
+
+ 
+
+  <h1>SignMitra</h1>
+  <div class="CWASAAvatar av0" style="width:400px; height:400px;"></div>
+  <textarea class="txtaSiGMLText av0" style="display:none;">
+    <sigml><hns_sign gloss="hello"><hns_handconfig handshape="flat" palmor="down"/></hns_sign></sigml>
+  </textarea>
+  <button onclick="document.querySelector('.bttnPlaySiGMLText').click()">Play Hello</button>
+  <!-- <div id="avatar-container">
+    <div class="CWASAAvatar av0" style="width:100%; height:100%; background:#fff;"></div>
+  </div> -->
+
+  <div id="input-section">
+    <input type="text" id="glossInput" placeholder="Type in Gujarati using English..." />
+    <button id="micBtn" onclick="startSpeechRecognition()">🎤</button>
+    <button id="playBtn" class="bttnPlaySiGMLText av0">▶</button>
+  </div>
+
+  <!-- Gujarati Keyboard Layout -->
+<div id="gujaratiKeyboard">
+  <!-- Vowels -->
+  <button onclick="insertChar('અ')">અ</button>
+  <button onclick="insertChar('આ')">આ</button>
+  <button onclick="insertChar('ઇ')">ઇ</button>
+  <button onclick="insertChar('ઈ')">ઈ</button>
+  <button onclick="insertChar('ઉ')">ઉ</button>
+  <button onclick="insertChar('ઊ')">ઊ</button>
+  <button onclick="insertChar('એ')">એ</button>
+  <button onclick="insertChar('ઐ')">ઐ</button>
+  <button onclick="insertChar('ઓ')">ઓ</button>
+  <button onclick="insertChar('ઔ')">ઔ</button>
+
+  <!-- Consonants -->
+  <button onclick="insertChar('ક')">ક</button>
+  <button onclick="insertChar('ખ')">ખ</button>
+  <button onclick="insertChar('ગ')">ગ</button>
+  <button onclick="insertChar('ઘ')">ઘ</button>
+  <button onclick="insertChar('ઙ')">ઙ</button>
+
+  <button onclick="insertChar('ચ')">ચ</button>
+  <button onclick="insertChar('છ')">છ</button>
+  <button onclick="insertChar('જ')">જ</button>
+  <button onclick="insertChar('ઝ')">ઝ</button>
+  <button onclick="insertChar('ઞ')">ઞ</button>
+
+  <button onclick="insertChar('ટ')">ટ</button>
+  <button onclick="insertChar('ઠ')">ઠ</button>
+  <button onclick="insertChar('ડ')">ડ</button>
+  <button onclick="insertChar('ઢ')">ઢ</button>
+  <button onclick="insertChar('ણ')">ણ</button>
+
+  <button onclick="insertChar('ત')">ત</button>
+  <button onclick="insertChar('થ')">થ</button>
+  <button onclick="insertChar('દ')">દ</button>
+  <button onclick="insertChar('ધ')">ધ</button>
+  <button onclick="insertChar('ન')">ન</button>
+
+  <button onclick="insertChar('પ')">પ</button>
+  <button onclick="insertChar('ફ')">ફ</button>
+  <button onclick="insertChar('બ')">બ</button>
+  <button onclick="insertChar('ભ')">ભ</button>
+  <button onclick="insertChar('મ')">મ</button>
+
+  <button onclick="insertChar('ય')">ય</button>
+  <button onclick="insertChar('ર')">ર</button>
+  <button onclick="insertChar('લ')">લ</button>
+  <button onclick="insertChar('વ')">વ</button>
+
+  <button onclick="insertChar('શ')">શ</button>
+  <button onclick="insertChar('ષ')">ષ</button>
+  <button onclick="insertChar('સ')">સ</button>
+  <button onclick="insertChar('હ')">હ</button>
+
+  <!-- Conjuncts & Others -->
+  <button onclick="insertChar('ળ')">ળ</button>
+  <button onclick="insertChar('ક્ષ')">ક્ષ</button>
+  <button onclick="insertChar('જ્ઞ')">જ્ઞ</button>
+  <button onclick="insertChar('ત્ર')">ત્ર</button>
+
+  <!-- Matras -->
+  <button onclick="insertChar('ા')">ા</button>
+  <button onclick="insertChar('િ')">િ</button>
+  <button onclick="insertChar('ી')">ી</button>
+  <button onclick="insertChar('ુ')">ુ</button>
+  <button onclick="insertChar('ૂ')">ૂ</button>
+  <button onclick="insertChar('ે')">ે</button>
+  <button onclick="insertChar('ૈ')">ૈ</button>
+  <button onclick="insertChar('ો')">ો</button>
+  <button onclick="insertChar('ૌ')">ૌ</button>
+
+  <!-- Special Characters -->
+  <button onclick="insertChar('ં')">ં</button>
+  <button onclick="insertChar('ઃ')">ઃ</button>
+  <button onclick="insertChar('્')">્</button>
+  <button onclick="insertChar('ૐ')">ૐ</button>
+
+  <!-- Numbers -->
+  <button onclick="insertChar('૧')">૧</button>
+  <button onclick="insertChar('૨')">૨</button>
+  <button onclick="insertChar('૩')">૩</button>
+  <button onclick="insertChar('૪')">૪</button>
+  <button onclick="insertChar('૫')">૫</button>
+  <button onclick="insertChar('૬')">૬</button>
+  <button onclick="insertChar('૭')">૭</button>
+  <button onclick="insertChar('૮')">૮</button>
+  <button onclick="insertChar('૯')">૯</button>
+  <button onclick="insertChar('૦')">૦</button>
+
+  <!-- Controls -->
+  <button onclick="deleteLastChar()">⌫</button>
+  <button onclick="insertChar(' ')">␣</button>
+</div>
+
+
+  <!-- Hidden for SiGML -->
+  <textarea class="txtaSiGMLText av0" style="display:none;"></textarea>
+
+  <script>
+    // Google Transliteration
+    google.load("elements", "1", {
+      packages: "transliteration"
+    });
+
+    google.setOnLoadCallback(() => {
+      const options = {
+        sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+        destinationLanguage: [google.elements.transliteration.LanguageCode.GUJARATI],
+        transliterationEnabled: true
+      };
+      const control = new google.elements.transliteration.TransliterationControl(options);
+      control.makeTransliteratable(["glossInput"]);
+    });
+
+    // Speech Recognition
+    function startSpeechRecognition() {
+      const micBtn = document.getElementById("micBtn");
+      const glossInput = document.getElementById("glossInput");
+
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = "gu-IN";
+
+      recognition.onstart = () => micBtn.innerText = "🎙️";
+      recognition.onend = () => micBtn.innerText = "🎤";
+      recognition.onerror = e => alert("Error: " + e.error);
+
+      recognition.onresult = e => {
+        glossInput.value = e.results[0][0].transcript;
+      };
+
+      recognition.start();
+    }
+
+    // Insert Gujarati character
+    function insertChar(char) {
+      const input = document.getElementById("glossInput");
+      input.value += char;
+    }
+
+    function deleteLastChar() {
+      const input = document.getElementById("glossInput");
+      input.value = input.value.slice(0, -1);
+    }
+
+    // SiGML Trigger (Add your logic)
+    document.getElementById("playBtn").addEventListener("click", () => {
+      // Placeholder - connect to your SiGML logic
+      alert("Send to SiGML: " + document.getElementById("glossInput").value);
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.CWASA && typeof CWASA.init === "function") {
+        CWASA.init();
+      } else {
+        console.error("CWASA is not loaded. Check allcsa.js path.");
+      }
+    });
+
+    console.log("CWASA is", window.CWASA);
+  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!-- © 2025 SIGNMitra Team: Dev Shah, Ayushi Soni, Maitriba Jadeja, Vishwa Joshi -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignMitra - Gujarati Sign Language Translator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="main-container">
+        <div class="left-panel">
+            <!-- Animated background elements -->
+            <div class="animated-bg">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            
+           
+            
+            <div class="wave-hand">👋</div>
+            
+            <div class="welcome-text">
+                <h2>Welcome to SignMitra!</h2>
+                <p>Your Gujarati Sign Language Translator - Breaking barriers in communication.</p>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="form-heading">
+                <h3 id="formTitle">Sign In</h3>
+                <p id="formSubtitle">Access your SignMitra account</p>
+            </div>
+            <div class="form-box">
+                <div class="toggle-buttons">
+                    <button id="loginBtn" class="active">Login</button>
+                    <button id="signupBtn">Signup</button>
+                </div>
+                
+                <div class="form-content" id="loginForm">
+                    <div class="input-group">
+                        <span class="input-icon">✉</span>
+                        <input 
+                            type="text" 
+                            id="loginEmail" 
+                            placeholder="Username or Email Address"
+                            aria-label="Email or Username"
+                        >
+                        <p class="validation-message" id="loginEmailError"></p>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="loginPassword" placeholder="Password" aria-label="Password">
+                        <span class="toggle-password" style="position:absolute; right:12px; top:14px; cursor:pointer;">👁</span>
+                        <p class="validation-message" id="loginPasswordError"></p>
+                    </div>                    
+                    <div class="form-footer">
+                        <label class="remember-me" for="remember">
+                            <input type="checkbox" id="remember">
+                            <span>Remember Me</span>
+                        </label>
+                        <a href="forget.html" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button class="submit-btn" id="loginSubmitBtn">Sign In</button>
+                    <div class="success-message" id="loginSuccess">Login successful! Redirecting...</div>
+                    
+                    <!---<div class="option-divider">Or continue with</div>
+                    <div class="social-login">
+                        <button class="social-btn" aria-label="Login with Google">G</button>
+                        <button class="social-btn" aria-label="Login with Facebook">f</button>
+                        <button class="social-btn" aria-label="Login with Apple">🍎</button>
+                    </div>--->
+                </div>
+                
+                <div class="form-content" id="signupForm" style="display: none;">
+                    <div class="input-group">
+                        <span class="input-icon">👤</span>
+                        <input 
+                            type="text" 
+                            id="signupName" 
+                            placeholder="Full Name"
+                            aria-label="Full Name"
+                        >
+                        <p class="validation-message" id="signupNameError"></p>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon">✉</span>
+                        <input 
+                            type="email" 
+                            id="signupEmail" 
+                            placeholder="Email Address"
+                            aria-label="Email Address"
+                        >
+                        <p class="validation-message" id="signupEmailError"></p>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="signupPassword" placeholder="Password" aria-label="Password">
+                        <span class="toggle-password" style="position:absolute; right:12px; top:14px; cursor:pointer;">👁</span>
+                        <p class="validation-message" id="signupPasswordError"></p>
+                    </div>                    
+                    <button class="submit-btn" id="signupSubmitBtn">Create Account</button>
+                    <div class="success-message" id="signupSuccess">Account created successfully! Please check your email.</div>
+                    
+                   <!--- <div class="option-divider">Or continue with</div>
+                    <div class="social-login">
+                        <button class="social-btn" aria-label="Signup with Google">G</button>
+                        <button class="social-btn" aria-label="Signup with Facebook">f</button>
+                        <button class="social-btn" aria-label="Signup with Apple">🍎</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>
